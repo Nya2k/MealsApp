@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams } from 'next/navigation'; 
+import Link from 'next/link';
 
 interface Meals{
   idMeal : number;
@@ -14,7 +15,7 @@ export default function Category() {
     const [meals, setMeals] = useState<Meals[]>([]);
 
     useEffect(() => {
-        axios.get(`https:www.themealdb.com/api/json/v1/1/filter.php?c=${params}`)
+        axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${params}`)
         .then(res => {
             setMeals(res.data.meals);
         })
@@ -31,10 +32,10 @@ export default function Category() {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1 md:gap-4 flex-row w-full py-3 px-2 md:px-5">
                     {meals.map((meal: any) => (
-                        <div key={meal.idMeal} className="bg-[#ffffff] border-2 border-[#948979] rounded shadow-lg p-2 md:p-4">
+                        <Link key={meal.idMeal} href={`/recipe/${meal.idMeal}`} passHref className="bg-[#ffffff] border-2 border-[#948979] rounded shadow-lg p-2 md:p-4">
                             <img src={meal.strMealThumb} alt={meal.strMeal} className="w-full h-auto rounded"></img>
                             <p className="text-[#153448] w-full text-center mt-3 text-xs sm:text-sm md:text-base">{meal.strMeal}</p>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
