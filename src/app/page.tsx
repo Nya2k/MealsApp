@@ -17,6 +17,7 @@ interface Area{
 export default function Home() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [areas, setAreas] = useState<Area[]>([]);
+  const [isExpand, setIsExpand] = useState(false);
 
   useEffect(() => {
     axios.get("https:www.themealdb.com/api/json/v1/1/categories.php")
@@ -38,6 +39,17 @@ export default function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    const handleExpand = () => {
+      setIsExpand(window.innerWidth > 1024);
+    };
+    handleExpand();
+    window.addEventListener('resize', handleExpand);
+    return () => {
+      window.removeEventListener('resize', handleExpand);
+    }
+  }, []);
+
   return (
     <div className="md:pb-5">
       <div className="relative w-full h-full">
@@ -47,21 +59,35 @@ export default function Home() {
           <p className="text-xl sm:text-2xl md:text-4xl tracking-tight hover:tracking-wide transition-all duration-500">Heartfelt Meals, Homemade Happiness</p>
         </div>
       </div>
-      {}
+      
       <div className="flex flex-col justify-center mt-4 md:mt-6">
         <div className="py-2 border-b-2 border-[#948979] border-opacity-30">
           <h1 className="w-full flex justify-center text-xl md:text-3xl font-serif font-semibold text-[#153448]">RECIPES CATEGORY</h1>
         </div>
         <div className="flex gap-1 md:gap-4 flex-col w-full py-3 px-2 md:px-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-4 flex-col w-full py-3 px-2 md:px-5">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 flex-col w-full py-3 px-2 md:px-5">
         {categories.map((category: any) => (
-          <Link key={category.strCategory} href={`/category/${category.strCategory}`} passHref className="bg-[#ffffff] w-full border-2 border-[#948979] rounded shadow-lg p-2 md:p-4 flex flex-col md:flex-row gap-3 items-center hover:bg-[#edeae4] transition-all duration-300 cursor-pointer">
-            <img src={category.strCategoryThumb} alt={category.strCategory} className="h-10 md:h-20"/>
-            <div className="flex flex-col gap-1">
-              <p className="text-base sm:text-lg md:text-xl font-semibold font-serif text-[#153448] text-center md:text-start">{category.strCategory}</p>
-              <p className="text-justify text-xs md:text-sm opacity-95 text-[#3C5B6F]">{category.strCategoryDescription}</p>
-            </div>
-          </Link>
+          isExpand ? (
+            <Link key={category.strCategory} href={`/category/${category.strCategory}`} passHref className="group relative bg-[#ffffff] w-full border-2 border-[#948979] rounded shadow-lg p-2 hover:bg-[#948979] hover:text-white transition-all duration-500 cursor-pointer">
+              <div className="cover group-hover:hidden flex flex-col md:p-4 md:flex-row gap-3 items-center transition-all duration-500">
+                <img src={category.strCategoryThumb} alt={category.strCategory} className="h-10 md:h-20" />
+                <div className="flex flex-col gap-1">
+                  <p className="text-base sm:text-lg xl:text-xl font-semibold font-serif text-[#153448] text-center md:text-start">{category.strCategory}</p>
+                </div>
+              </div>
+              <div className="desc hidden group-hover:block absolute top-0 left-0 right-0 bottom-0 px-5 py-4 overflow-y-auto transition-all duration-500">
+                <p className="text-justify overflow-y-auto text-xs md:text-sm opacity-95 text-white">{category.strCategoryDescription}</p>
+              </div>
+            </Link>
+          ) : (
+            <Link key={category.strCategory} href={`/category/${category.strCategory}`} passHref className="bg-[#ffffff] w-full border-2 border-[#948979] rounded shadow-lg p-2 md:p-4 flex flex-col gap-3 items-center hover:bg-[#edeae4] transition-all duration-300 cursor-pointer">
+              <img src={category.strCategoryThumb} alt={category.strCategory} className="h-10 md:h-20" />
+              <div className="flex flex-col gap-1">
+                <p className="text-base sm:text-lg font-semibold font-serif text-[#153448] text-start">{category.strCategory}</p>
+                <p className="text-justify text-xs opacity-95 text-[#3C5B6F]">{category.strCategoryDescription}</p>
+              </div>
+            </Link>
+          )
         ))}
         </div>
         </div>
@@ -74,9 +100,9 @@ export default function Home() {
         <div className="flex gap-1 md:gap-4 flex-col w-full py-1 px-2 md:px-5">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-1 md:gap-4 flex-col w-full py-3 px-2 md:px-5">
             {areas.map ((area: any) => (
-              <Link key={area.strArea} href={`/area/${area.strArea}`} passHref className="bg-[#ffffff] w-full border-2 border-[#948979] rounded shadow-lg p-2 md:p-4 flex flex-col md:flex-row gap-3 items-center hover:bg-[#e2ded7] transition-all duration-300">
+              <Link key={area.strArea} href={`/area/${area.strArea}`} passHref className="bg-[#ffffff] text-[#153448] w-full border-2 border-[#948979] rounded shadow-lg p-2 md:p-4 flex flex-col md:flex-row gap-3 items-center hover:bg-[#948979] hover:text-white transition-all duration-300">
                 <div className="flex flex-col gap-1">
-                  <p className="text-base sm:text-lg md:text-lg font-medium  text-[#153448] text-center md:text-start">{area.strArea}</p>
+                  <p className="text-base sm:text-lg md:text-lg font-medium  text-center md:text-start">{area.strArea}</p>
                 </div>
               </Link>
             ))}

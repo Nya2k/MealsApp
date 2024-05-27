@@ -32,9 +32,9 @@ export default function Category() {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1 md:gap-4 flex-row w-full py-3 px-2 md:px-5">
                     {meals.map((meal: any) => (
-                        <Link key={meal.idMeal} href={`/recipe/${meal.idMeal}`} passHref className="bg-[#ffffff] border-2 border-[#948979] rounded shadow-lg p-2 md:p-4">
+                        <Link key={meal.idMeal} href={`/recipe/${meal.idMeal}`} passHref className="bg-[#ffffff] text-[#153448] border-2 border-[#948979] rounded shadow-lg p-2 md:p-4 hover:bg-[#948979] hover:text-white transition-all duration-300">
                             <img src={meal.strMealThumb} alt={meal.strMeal} className="w-full h-auto rounded"></img>
-                            <p className="text-[#153448] w-full text-center mt-3 text-xs sm:text-sm md:text-base">{meal.strMeal}</p>
+                            <p className="w-full text-center mt-3 text-xs sm:text-sm md:text-base">{meal.strMeal}</p>
                         </Link>
                     ))}
                 </div>
