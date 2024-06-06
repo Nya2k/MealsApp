@@ -90,7 +90,7 @@ export default function Home() {
       <div className="flex flex-col justify-center md:mt-6">
        <div className="py-2 border-b-2 border-[#948979] border-opacity-30">
           <h1 className="w-full flex justify-center text-xl md:text-3xl font-serif font-semibold text-[#153448]">Random Meal</h1>
-          <p className="w-full flex justify-center text-xs md:text-base font-serif font-semibold text-[#153448]">Click the button to get a random meal!</p>
+          <p className="w-full flex justify-center text-xs md:text-base font-serif font-semibold text-[#153448]">click the button to get a random meal!</p>
         </div>
         {(randomMeal ? (
         <div className="flex flex-row justify-center py-4 gap-3">
