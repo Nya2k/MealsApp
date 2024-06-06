@@ -39,7 +39,7 @@ export default function Category() {
     return (
         <div className="pb-5 md:mt-14">
             <div className="flex flex-col justify-center">
-                <div className="bg-gradient-to-b from-[#948979] text-white border-opacity-30 py-2 md:py-4 pt-[60px] md:pt-4">
+                <div className="bg-gradient-to-b from-[#e8ddcb] text-white border-opacity-30 py-2 md:py-4 pt-[60px] md:pt-4">
                     <h1 className="w-full flex justify-center text-2xl md:text-3xl font-serif font-semibold text-[#32291b] drop-shadow-lg">{params} Recipes</h1>
                     <div className="w-full flex justify-center py-4 px-2 md:px-5 ">
                         <p className="text-xs sm:text-sm md:text-base border-2 text-[#32291b] border-[#948979] p-2 rounded shadow-lg">{desc}</p>
