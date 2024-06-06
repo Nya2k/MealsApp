@@ -65,18 +65,18 @@ export default function Home() {
           <h1 className="w-full flex justify-center text-xl md:text-3xl font-serif font-semibold text-[#153448]">RECIPES CATEGORY</h1>
         </div>
         <div className="flex gap-1 md:gap-4 flex-col w-full py-3 px-2 md:px-5">
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 flex-col w-full py-3 px-2 md:px-5">
+        <div className="grid grid-cols-2 lg:grid-cols-2 gap-1 md:gap-4 flex-col w-full py-3 px-2 md:px-5">
         {categories.map((category: any) => (
           isExpand ? (
             <Link key={category.strCategory} href={`/category/${category.strCategory}`} passHref className="group relative bg-[#ffffff] w-full border-2 border-[#948979] rounded shadow-lg p-2 hover:bg-[#948979] hover:text-white transition-all duration-500 cursor-pointer">
               <div className="cover group-hover:hidden flex flex-col md:p-4 md:flex-row gap-3 items-center transition-all duration-500">
-                <img src={category.strCategoryThumb} alt={category.strCategory} className="h-10 md:h-20" />
+                <img src={category.strCategoryThumb} alt={category.strCategory} className="h-10 md:h-20"/>
                 <div className="flex flex-col gap-1">
                   <p className="text-base sm:text-lg xl:text-xl font-semibold font-serif text-[#153448] text-center md:text-start">{category.strCategory}</p>
                 </div>
               </div>
               <div className="desc hidden group-hover:block absolute top-0 left-0 right-0 bottom-0 px-5 py-4 overflow-y-auto transition-all duration-500">
-                <p className="text-justify overflow-y-auto text-xs md:text-sm opacity-95 text-white">{category.strCategoryDescription}</p>
+                <p className="text-justify overflow-y-auto text-xs md:text-base opacity-95 text-white">{category.strCategoryDescription}</p>
               </div>
             </Link>
           ) : (

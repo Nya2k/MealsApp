@@ -30,7 +30,7 @@ export default function Ingredient() {
         <div className="pb-5 md:mt-14">
             <div className="flex flex-col justify-center">
                 <div className="border-b-2 border-[#948979] border-opacity-30 py-2 md:py-4">
-                    <h1 className="w-full flex justify-center text-2xl font-serif font-semibold text-[#153448]">Recipes with {decoded_param}</h1>
+                    <h1 className="w-full flex justify-center text-2xl md:text-3xl font-serif font-semibold text-[#153448]">Recipes with {decoded_param}</h1>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1 md:gap-4 flex-row w-full py-3 px-2 md:px-5">
                 {meals && meals.length > 0 ? (

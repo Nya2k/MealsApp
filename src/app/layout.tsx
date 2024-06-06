@@ -9,8 +9,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Meal App",
-  description: "TUGAS PTI CUY",
+  title: "Mom's Recipe",
+  description: "Heartfelt Meals, Homemade Happiness",
 };
 
 export default function RootLayout({
