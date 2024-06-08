@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import { useParams } from 'next/navigation'; 
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Meals{
   idMeal : number;
@@ -22,7 +23,7 @@ export default function Category() {
         .catch(err => {
             console.log("data meals error", err);
         });
-    }, []);
+    }, [params]);
 
     return (
         <div className="pb-5 md:mt-14 bg-[#948979]">
@@ -33,7 +34,7 @@ export default function Category() {
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1 md:gap-4 flex-row w-full py-3 px-2 md:px-5">
                     {meals.map((meal: any) => (
                         <Link key={meal.idMeal} href={`/recipe/${meal.idMeal}`} passHref className="bg-[#ffffff] text-[#153448] border-2 border-[#ffffff] rounded shadow-lg p-2 md:p-4 hover:bg-transparent hover:shadow-md hover:shadow-[#ffffff] hover:text-white transition-all duration-300">
-                            <img src={meal.strMealThumb} alt={meal.strMeal} className="w-full h-auto rounded"></img>
+                            <Image src={meal.strMealThumb} alt={meal.strMeal} layout="responsive" width={100} height={100} className="w-full h-auto rounded"/>
                             <p className="w-full text-center text-bold mt-3 text-xs sm:text-sm md:text-base">{meal.strMeal}</p>
                         </Link>
                     ))}
