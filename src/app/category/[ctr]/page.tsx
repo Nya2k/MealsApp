@@ -35,7 +35,7 @@ export default function Category() {
         .catch(err => {
             console.log("category description error", err);
         });
-    }, []);
+    }, [params]);
 
     return (
         <div className="pb-5 md:mt-14 bg-[#948979]">

@@ -16,7 +16,7 @@ export default function Category() {
     const [meals, setMeals] = useState<Meals[]>([]);
 
     useEffect(() => {
-        axios.get(`https:www.themealdb.com/api/json/v1/1/filter.php?a=${params}`)
+        axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${params}`)
         .then(res => {
             setMeals(res.data.meals);
         })

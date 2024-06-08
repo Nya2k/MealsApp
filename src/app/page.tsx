@@ -37,7 +37,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    axios.get("https:www.themealdb.com/api/json/v1/1/categories.php")
+    axios.get("https://www.themealdb.com/api/json/v1/1/categories.php")
       .then(res => {
         setCategories(res.data.categories);
       })
@@ -47,7 +47,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    axios.get("https:www.themealdb.com/api/json/v1/1/list.php?a=list")
+    axios.get("https://www.themealdb.com/api/json/v1/1/list.php?a=list")
       .then(res => {
         setAreas(res.data.meals);
       })
@@ -62,7 +62,7 @@ export default function Home() {
 
   useEffect(() => {
     if(isRandom){
-      axios.get("https:www.themealdb.com/api/json/v1/1/random.php")
+      axios.get("https://www.themealdb.com/api/json/v1/1/random.php")
         .then(res => {
           setRandomMeal(res.data.meals[0]);
           setIsRandom(false);
