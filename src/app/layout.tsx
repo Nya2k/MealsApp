@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./navbar";
+import { useState, useEffect } from "react";
 import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({

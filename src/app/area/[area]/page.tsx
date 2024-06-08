@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams } from 'next/navigation'; 
 import Link from 'next/link';
 import Image from 'next/image';
+import { GiMeal } from "react-icons/gi";
 
 interface Meals{
   idMeal : number;
@@ -14,6 +15,13 @@ interface Meals{
 export default function Category() {
     const params = useParams().area;
     const [meals, setMeals] = useState<Meals[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    }, []);
 
     useEffect(() => {
         axios.get(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${params}`)
@@ -25,8 +33,16 @@ export default function Category() {
         });
     }, [params]);
 
+    if (isLoading) {
+        return (
+          <div className="flex h-screen justify-center items-center">
+            <GiMeal className="text-6xl text-[#153448] animate-pulse"/>
+          </div>
+        )
+      }
+
     return (
-        <div className="pb-5 md:mt-14 bg-[#948979]">
+        <div className="pb-5 md:pt-14 min-h-screen h-full bg-[#948979]">
             <div className="flex flex-col justify-center">
                 <div className="bg-gradient-to-b from-[#ffffff] border-opacity-30 py-2 md:py-4 pt-[60px] md:pt-4">
                     <h1 className="w-full flex justify-center text-2xl md:text-3xl font-serif font-semibold text-[#153448]">{params} Recipes</h1>

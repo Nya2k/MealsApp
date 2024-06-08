@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useParams } from 'next/navigation'; 
 import Link from "next/link";
 import Image from 'next/image';
+import { GiMeal } from "react-icons/gi";
 
 interface Recipe{
     idMeal: number;
@@ -59,6 +60,13 @@ interface Recipe{
 export default function Recipe() {
     const params = useParams().id;
     const [recipes, setRecipes] = useState<Recipe[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+    }, []);
 
     useEffect(() => {
         axios.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params}`)
@@ -82,6 +90,13 @@ export default function Recipe() {
         return ingredients;
     };
 
+    if (isLoading) {
+        return (
+          <div className="flex h-screen justify-center items-center">
+            <GiMeal className="text-6xl text-[#153448] animate-pulse"/>
+          </div>
+        )
+      }
     
     return (
         <div className="pb-5">

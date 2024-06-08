@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 import Link from 'next/link';
 import Image from 'next/image';
+import { GiMeal } from "react-icons/gi";
 
 interface Meal{
   idMeal : number;
@@ -29,12 +30,20 @@ export default function Home() {
   const [areas, setAreas] = useState<Area[]>([]);
   const [isExpand, setIsExpand] = useState(false);
   const [isRandom, setIsRandom] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
   const image = "/hero-bg.webp";
   const styling = {
     backgroundImage: `url(${image})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+        setIsLoading(false);
+    }, 1000);
+}, []);
 
   useEffect(() => {
     axios.get("https://www.themealdb.com/api/json/v1/1/categories.php")
@@ -83,6 +92,14 @@ export default function Home() {
       window.removeEventListener('resize', handleExpand);
     }
   }, []);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen justify-center items-center">
+        <GiMeal className="text-6xl text-[#153448] animate-pulse"/>
+      </div>
+    )
+  }
 
   return (
     <div className="md:pb-5">
